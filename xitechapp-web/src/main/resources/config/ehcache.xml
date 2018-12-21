@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="defaultCache">
+    <diskStore path="../tmp/itech/ehcache"/>
+    <defaultCache    
+    maxElementsInMemory="10000"    
+    maxElementsOnDisk="0"    
+    eternal="true"    
+    overflowToDisk="true"    
+    diskPersistent="false"    
+    timeToIdleSeconds="10000"    
+    timeToLiveSeconds="10000"    
+    diskSpoolBufferSizeMB="50"    
+    diskExpiryThreadIntervalSeconds="120"    
+    memoryStoreEvictionPolicy="LFU"    
+    />
+    <cache name="itech-activeSessionCache"
+           maxElementsInMemory="10000"
+           overflowToDisk="true"
+           eternal="true"
+           timeToLiveSeconds="10000"
+           timeToIdleSeconds="10000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="60000"/>
+
+</ehcache>
