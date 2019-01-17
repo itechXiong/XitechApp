@@ -27,7 +27,7 @@
 	<!-- lettuce 方式 -->
 	<bean id="lettuceConnFactory" 
 	    class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory" 
-	   	p:port="6379"/>
+	    p:host-name="192.168.31.54" p:port="6379"/><!-- 	  -->
 
 	<!-- redis 模板定义 -->
 	<bean id="redisTemplate" 
