@@ -46,7 +46,13 @@ function getDataFromServer() {
 function getDataFromServerCallBack(dataFromServer) {
   //alert(dwr.util.toDescriptiveString(dataFromServer, 3));
   alert(dataFromServer);
+  alert(dataFromServer.userName);
+  alert(dataFromServer.userPwd);
 }
+dwrService.getDwrUser(function(data){
+	alert(data.userName);
+	alert(data.userPwd);
+});
 </script>
 
 

@@ -16,7 +16,7 @@
 	<context:component-scan base-package="com.xitech.web.config"></context:component-scan>
 	
 	<!-- <dwr:controller id="dwrController" debug="true"/> -->
-	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 	  <property value="true" name="alwaysUseFullPath"></property> 
 	  <property name="mappings">
 	    <props> 
@@ -24,16 +24,38 @@
 	    </props>
 	 </property> 
 	</bean>
-	<dwr:controller id="dwrController" debug="true">
-		<dwr:config-param name="activeReverseAjaxEnabled" value="true"/>
-	</dwr:controller> -->
 	
+	<!--dwr控制器-->
+	<dwr:controller id="dwrController" debug="true"/>
+        
+    <!--设置需要dwr转化的实体类，格式为json传输到jsp页面-->
 	<!-- <dwr:configuration>
+		<dwr:convert type="bean" class="com.xitech.web.dwr.entity.DwrUser"/>
+	</dwr:configuration>
+	
+	<bean id="helloService" class="com.xitech.web.dwr.service.DwrTes">
+		<dwr:remote javascript="dwrServices">
+		    <dwr:include method="getDwrUser" />
+		</dwr:remote>
+	</bean> -->
+
+	
+	
+	<!-- <dwr:controller id="dwrController" debug="true">
+		<dwr:config-param name="activeReverseAjaxEnabled" value="true"/>
+	</dwr:controller>
+	
+	<dwr:configuration>
 	    <dwr:convert type="bean" class="com.xitech.web.dwr.entity.DwrUser" />
-	</dwr:configuration> -->
-	<!-- <dwr:configuration />
+	</dwr:configuration>
+	<bean id="dwrTes" class="com.xitech.web.dwr.service.DwrTes">
+	  <dwr:remote javascript="dwrServices">
+	    <dwr:include method="getDwrUser" />
+	  </dwr:remote>
+	</bean> -->
+	<dwr:configuration />
 	<dwr:annotation-config id="dwrAnnotationConfig" />
-  	<dwr:annotation-scan base-package="com.xitech.web" scanDataTransferObject="true" scanRemoteProxy="false"  /> --><!-- scanRemoteProxy="true" -->
+  	<dwr:annotation-scan base-package="com.xitech.web" scanDataTransferObject="true" scanRemoteProxy="true"  /><!-- scanRemoteProxy="true" -->
   	
   	<!-- <bean id="dwrService" class="com.xitech.web.dwr.service.DwrService">
 	    <dwr:remote javascript="dwrService">
@@ -44,6 +66,8 @@
 	<!-- <import resource="classpath:/config/xitech-web-spring-shiro.xml"/> -->
 	<import resource="classpath:/config/xitech-web-spring-redis.xml"/>
 	<mvc:annotation-driven />
+	<!-- 打开Spring的Annotation支持 -->
+	<context:annotation-config />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- 支持Shiro对Controller的方法级AOP安全控制 begin-->

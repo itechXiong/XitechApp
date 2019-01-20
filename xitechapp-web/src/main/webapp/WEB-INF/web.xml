@@ -7,13 +7,13 @@
   </listener>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:/config/xitech-web-spring-context.xml,
-    			classpath:/config/xitech-web-spring-mvc.xml
+    <param-value>
+    			classpath:/config/xitech-web-spring-context.xml
       </param-value>
   </context-param>
   <!-- spring-MVC 请求分发器配置，对http请求进行处理 
       			classpath:/config/xitech-web-spring-shiro.xml,
-  
+  classpath:/config/xitech-web-spring-context.xml,classpath*:/config/xitech-web-spring-mvc.xml
   -->
   <servlet>
     <servlet-name>xitech-app</servlet-name>
@@ -27,12 +27,12 @@
   </servlet>
    <servlet-mapping>
     <servlet-name>xitech-app</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <!-- <servlet-mapping>
+  <servlet-mapping>
 	  <servlet-name>xitech-app</servlet-name>
 	  <url-pattern>/dwr/*</url-pattern>
-  </servlet-mapping> -->
+  </servlet-mapping>
  
   
   

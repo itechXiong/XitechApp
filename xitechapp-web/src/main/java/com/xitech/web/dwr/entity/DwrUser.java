@@ -8,6 +8,15 @@ public class DwrUser {
 	private String userName;
 	
 	private String userPwd;
+	
+	public DwrUser() {
+		
+	}
+	
+	public DwrUser(String userName,String userPwd) {
+		this.userName = userName;
+		this.userPwd = userPwd;
+	}
 
 	public String getUserName() {
 		return userName;
