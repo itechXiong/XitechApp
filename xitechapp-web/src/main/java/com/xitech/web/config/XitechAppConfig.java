@@ -22,10 +22,10 @@ public class XitechAppConfig {
 	/*@Autowired 
 	XitechAppRedisClusterConfig clusterProperties;*/
 
-	@Bean
+	/*@Bean
 	public RedisConnectionFactory lettuceConnFactory() {
 		List<String> nodes = Arrays.asList(env.getProperty("spring.redis.cluster.nodes").split(","));
         return new LettuceConnectionFactory(new RedisClusterConfiguration(nodes));
-    }
+    }*/
 	
 }

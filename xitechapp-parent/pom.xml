@@ -97,6 +97,13 @@
     <version>4.0</version>
 </dependency> -->
      
+	<!-- comet框架dwr的依赖 --><!-- <type>pom</type> -->
+	<dependency>
+	  <groupId>org.directwebremoting</groupId>
+	  <artifactId>dwr</artifactId>
+	  <version>3.0.2-RELEASE</version>
+	  
+	</dependency>
 </dependencies>
 <build>  
     <plugins>  

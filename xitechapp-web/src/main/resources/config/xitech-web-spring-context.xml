@@ -6,11 +6,11 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
-	<!-- <import resource="classpath:config/xitech-web-spring-mvc.xml"/> -->
+	<import resource="classpath:config/xitech-web-spring-mvc.xml"/>
 	<context:component-scan base-package="com.xitech.web.controller"></context:component-scan>
 	
 	<!-- 支持Shiro对Controller的方法级AOP安全控制 begin-->
-	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
 		<property name="proxyTargetClass" value="true" />
-	</bean>
+	</bean> -->
 </beans>

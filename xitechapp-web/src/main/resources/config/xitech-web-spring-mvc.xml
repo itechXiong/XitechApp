@@ -3,25 +3,56 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.directwebremoting.org/schema/spring-dwr
+    	http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
 	
 	<context:component-scan base-package="com.xitech.web.controller"></context:component-scan>
-	<import resource="classpath:/config/xitech-web-spring-shiro.xml"/>
+	<context:component-scan base-package="com.xitech.web.config"></context:component-scan>
+	
+	<!-- <dwr:controller id="dwrController" debug="true"/> -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	  <property value="true" name="alwaysUseFullPath"></property> 
+	  <property name="mappings">
+	    <props> 
+	      <prop key="/dwr/**/*">dwrController</prop>
+	    </props>
+	 </property> 
+	</bean>
+	<dwr:controller id="dwrController" debug="true">
+		<dwr:config-param name="activeReverseAjaxEnabled" value="true"/>
+	</dwr:controller> -->
+	
+	<!-- <dwr:configuration>
+	    <dwr:convert type="bean" class="com.xitech.web.dwr.entity.DwrUser" />
+	</dwr:configuration> -->
+	<!-- <dwr:configuration />
+	<dwr:annotation-config id="dwrAnnotationConfig" />
+  	<dwr:annotation-scan base-package="com.xitech.web" scanDataTransferObject="true" scanRemoteProxy="false"  /> --><!-- scanRemoteProxy="true" -->
+  	
+  	<!-- <bean id="dwrService" class="com.xitech.web.dwr.service.DwrService">
+	    <dwr:remote javascript="dwrService">
+	      <dwr:include method="getDwrUser" />   
+	    </dwr:remote>
+	  </bean> -->
+	
+	<!-- <import resource="classpath:/config/xitech-web-spring-shiro.xml"/> -->
 	<import resource="classpath:/config/xitech-web-spring-redis.xml"/>
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- 支持Shiro对Controller的方法级AOP安全控制 begin-->
-	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 	    <property name="securityManager" ref="securityManager"/>
-	</bean>
+	</bean> -->
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<property name="prefix" value="/WEB-INF/"/>

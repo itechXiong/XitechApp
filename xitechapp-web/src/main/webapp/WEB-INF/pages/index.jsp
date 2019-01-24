@@ -25,11 +25,30 @@
 <div id="login-window">
     success;
 </div>
+<a href="#" onclick="getDataFromServer(); return false;">Retrieve test data</a><br/>
+
 <script src="${basePath}/resources/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/plugins/checkbix/js/checkbix.min.js"></script>
+<script type='text/javascript' src='${basePath}/dwr/engine.js'></script>
+<script type='text/javascript' src='${basePath}/dwr/util.js'></script>
+<script type='text/javascript' src='${basePath}/dwr/interface/dwrService.js'></script>
 <script>var BASE_PATH = '${basePath}';</script>
 <script>var BACK_URL = '${param.backurl}';</script>
+<script>
+function getDataFromServer() {
+	dwrService.getDwrUser({
+  	callback: getDataFromServerCallBack
+  });
+}
+
+function getDataFromServerCallBack(dataFromServer) {
+  //alert(dwr.util.toDescriptiveString(dataFromServer, 3));
+  alert(dataFromServer);
+}
+</script>
+
+
 </body>
 </html>
