@@ -2,31 +2,35 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.directwebremoting.org/schema/spring-dwr
     	http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
 	
 	<context:component-scan base-package="com.xitech.web.controller"></context:component-scan>
 	<context:component-scan base-package="com.xitech.web.config"></context:component-scan>
+	<context:component-scan base-package="com.xitech.web.scheduler"></context:component-scan>
 	
 	<!-- <dwr:controller id="dwrController" debug="true"/> -->
-	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 	  <property value="true" name="alwaysUseFullPath"></property> 
 	  <property name="mappings">
 	    <props> 
 	      <prop key="/dwr/**/*">dwrController</prop>
 	    </props>
 	 </property> 
-	</bean>
+	</bean> -->
 	
 	<!--dwr控制器-->
-	<dwr:controller id="dwrController" debug="true"/>
+	<!-- <dwr:controller id="dwrController" debug="true"/> -->
         
     <!--设置需要dwr转化的实体类，格式为json传输到jsp页面-->
 	<!-- <dwr:configuration>
@@ -53,10 +57,10 @@
 	    <dwr:include method="getDwrUser" />
 	  </dwr:remote>
 	</bean> -->
-	<dwr:configuration />
+	<!-- <dwr:configuration />
 	<dwr:annotation-config id="dwrAnnotationConfig" />
-  	<dwr:annotation-scan base-package="com.xitech.web" scanDataTransferObject="true" scanRemoteProxy="true"  /><!-- scanRemoteProxy="true" -->
-  	
+  	<dwr:annotation-scan base-package="com.xitech.web" scanDataTransferObject="true" scanRemoteProxy="true"  />scanRemoteProxy="true"
+  	 -->
   	<!-- <bean id="dwrService" class="com.xitech.web.dwr.service.DwrService">
 	    <dwr:remote javascript="dwrService">
 	      <dwr:include method="getDwrUser" />   
@@ -64,22 +68,37 @@
 	  </bean> -->
 	
 	<!-- <import resource="classpath:/config/xitech-web-spring-shiro.xml"/> -->
-	<import resource="classpath:/config/xitech-web-spring-redis.xml"/>
+	<import resource="classpath*:/config/xitech-web-spring-redis.xml"/>
 	<mvc:annotation-driven />
 	<!-- 打开Spring的Annotation支持 -->
 	<context:annotation-config />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
+	<import resource="classpath*:/config/xitech-web-spring-shiro.xml"/>
 	<!-- 支持Shiro对Controller的方法级AOP安全控制 begin-->
-	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 	    <property name="securityManager" ref="securityManager"/>
-	</bean> -->
+	</bean>
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<property name="prefix" value="/WEB-INF/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	
+	
+	<task:annotation-driven/>
+	<task:scheduler id="myScheduler" pool-size="10"/>
+	
+	<task:scheduled-tasks scheduler="myScheduler">
+		<task:scheduled ref="xitechAppScheduler" method="printScheduler" cron="0/10 * * * * *"/>
+		<task:scheduled ref="xitechAppScheduler" method="printScheduler1" cron="0/10 * * * * *"/>
+		<!-- <task:scheduled ref="xitechAppScheduler" method="printScheduler2" cron="0/10 * * * * *"/> -->
+		<!-- <task:scheduled ref="xitechAppScheduler" method="printScheduler3" cron="0/10 * * * * *"/>
+		<task:scheduled ref="xitechAppScheduler" method="printScheduler4" cron="0/10 * * * * *"/>
+		<task:scheduled ref="xitechAppScheduler" method="printScheduler5" cron="0/10 * * * * *"/> -->
+	</task:scheduled-tasks>
+		
 </beans>

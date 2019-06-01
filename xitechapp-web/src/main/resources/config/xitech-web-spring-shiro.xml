@@ -22,6 +22,7 @@
 				/xitech/login=anon
 				/resources/** = anon
 				/xitech/index=anon
+				/xitech/test=user
 				/dwr/**=anon
 				/**=authc
 	        </value>
@@ -66,29 +67,32 @@
 		<property name="sessionIdCookieEnabled" value="true"/>
 		<property name="sessionIdCookie" ref="sessionIdCookie"></property>
 		<property name="globalSessionTimeout" value="300000"/> <!-- 1分钟  -->
-		<property name="sessionDAO" ref="xitechSessionDAO"/>
+		
 		<property name="sessionValidationInterval" value="6000"/>
  		<property name="sessionValidationSchedulerEnabled" value="true"/>
-		<property name="sessionListeners">
+		<!-- <property name="sessionListeners">
 			<list>
 				<ref bean="xitechSessionListener"/>
 			</list>
-		</property>
+		</property> -->
 	</bean>
+	<!-- <property name="sessionDAO" ref="xitechSessionDAO"/> -->
+	
+	
 	<!-- <bean id="xitechSessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
 		<property name="activeSessionsCacheName" value = "xitech-activeSessionCache"/>
 	</bean> -->
-	<bean id="xitechSessionDAO" class="com.xitech.web.session.dao.XitechSessionDao">
+	<!-- <bean id="xitechSessionDAO" class="com.xitech.web.session.dao.XitechSessionDao">
 		
-	</bean>
+	</bean> -->
 	<!-- <property name="activeSessionsCacheName" value = "xitech-activeSessionCache"/> -->
 	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
 		<property name="name" value="sid"/>
 		<property name="maxAge" value="300"/>
 		<property name="httpOnly" value="true"/>
 	</bean>
-	<bean id="xitechSessionListener" class="com.xitech.web.shiro.listener.XitechSessionListener">
-	</bean>
+	<!-- <bean id="xitechSessionListener" class="com.xitech.web.shiro.listener.XitechSessionListener">
+	</bean> -->
 	
 	<!-- cache  -->
 	<!-- <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">

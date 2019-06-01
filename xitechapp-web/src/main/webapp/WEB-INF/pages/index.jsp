@@ -24,19 +24,34 @@
 <body>
 <div id="login-window">
     success;
+	<shiro:guest>
+		hi guest
+		
+	</shiro:guest>
+	<shiro:hasRole name="test"> 
+		<div>
+		<a href="#">Administer the system</a> ss
+		</div>
+	</shiro:hasRole>
 </div>
+
+<%-- <shiro:hasRole name="test"> 
+<div>
+<a href="#">Administer the system</a> ss
+</div>
+</shiro:hasRole> --%>
 <a href="#" onclick="getDataFromServer(); return false;">Retrieve test data</a><br/>
 
 <script src="${basePath}/resources/plugins/jquery.1.12.4.min.js"></script>
 <script src="${basePath}/resources/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="${basePath}/resources/plugins/checkbix/js/checkbix.min.js"></script>
-<script type='text/javascript' src='${basePath}/dwr/engine.js'></script>
+<%-- <script type='text/javascript' src='${basePath}/dwr/engine.js'></script>
 <script type='text/javascript' src='${basePath}/dwr/util.js'></script>
-<script type='text/javascript' src='${basePath}/dwr/interface/dwrService.js'></script>
+<script type='text/javascript' src='${basePath}/dwr/interface/dwrService.js'></script> --%>
 <script>var BASE_PATH = '${basePath}';</script>
 <script>var BACK_URL = '${param.backurl}';</script>
-<script>
+<!-- <script>
 function getDataFromServer() {
 	dwrService.getDwrUser({
   	callback: getDataFromServerCallBack
@@ -54,6 +69,8 @@ dwrService.getDwrUser(function(data){
 	alert(data.userPwd);
 });
 </script>
+ -->
+ 
 
 
 </body>
