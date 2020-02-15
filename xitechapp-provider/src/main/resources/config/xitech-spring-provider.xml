@@ -9,6 +9,6 @@
 	<context:component-scan base-package="com.xitech.service.provider"/>
 	<dubbo:application name="xitechapp-provider"  />  
     <dubbo:registry address="multicast://224.5.6.7:1234" />  
-    <dubbo:protocol name="dubbo" port="20880" /> 
+    <dubbo:protocol name="http" port="8888" /> 
     <dubbo:service ref="stringResultService" interface="com.xitech.service.StringResultService"/> 
 </beans>
